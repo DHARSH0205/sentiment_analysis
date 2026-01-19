@@ -16,7 +16,7 @@ This project uses **state-of-the-art NLP models from Hugging Face Transformers**
   - Word Cloud of frequent terms
 - 🧠 Optional text summarization using BART
 - 🖥️ Clean, modern UI (HTML + CSS)
-- ⚡ Automatic model downloading & caching (no large files in repo)
+- ⚡ Automatic model downloading & caching
 
 ---
 
@@ -29,8 +29,3 @@ This project uses **state-of-the-art NLP models from Hugging Face Transformers**
 
 > Models are automatically downloaded from Hugging Face and cached locally.  
 > They are **not stored in this repository**.
-
----
-
-## 📂 Project Structure
-
