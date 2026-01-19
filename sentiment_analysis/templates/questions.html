@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback on Stray Dog Ruling</title>
+  <style>
+    :root{--bg:#f5f7fb;--card:#ffffff;--accent:#2563eb;--muted:#6b7280}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; background:var(--bg); margin:0; padding:24px; color:#0f1724}
+    .container{max-width:640px;margin:24px auto}
+    .card{background:var(--card);border-radius:10px;padding:20px;box-shadow:0 8px 24px rgba(15,23,42,0.06)}
+    h2{margin:0 0 8px;font-size:20px}
+    p.lead{margin:0 0 18px;color:var(--muted);font-size:14px}
+    label{display:block;margin-bottom:6px;font-weight:600}
+    select, textarea, button{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #e6e9ef;font-size:14px}
+    textarea{min-height:110px;resize:vertical}
+    .row{display:flex;gap:12px}
+    .small{width:48%}
+    .muted{font-size:13px;color:var(--muted);margin-top:8px}
+    button{background:var(--accent);color:white;border:none;cursor:pointer;font-weight:700}
+    button:hover{opacity:0.95}
+    @media (max-width:560px){.row{flex-direction:column}.small{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Feedback Form: Supreme Court Stray Dogs Ruling</h2>
+      <p class="lead">Quick feedback — we'll use short comments for sentiment analysis.</p>
+
+      <form id="feedbackForm" onsubmit="handleSubmit(event)">
+        <label for="opinion">Do you support this ruling?</label>
+        <select id="opinion" name="opinion" required>
+          <option value="">-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="neutral">Neutral</option>
+        </select>
+
+        <label for="comments" style="margin-top:12px">Why do you feel this way? (brief)</label>
+        <textarea id="comments" name="comments" placeholder="Write your feedback here..." required></textarea>
+
+        <div style="margin-top:12px" class="row">
+          <div class="small">
+            <label for="state">State (optional)</label>
+            <input id="state" name="state" type="text" placeholder="e.g. Punjab">
+          </div>
+          <div class="small">
+            <label for="email">Email (optional)</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com">
+          </div>
+        </div>
+
+        <p class="muted">Estimated time: <strong>~1–2 minutes</strong></p>
+        <button type="submit">Submit feedback</button>
+      </form>
+
+      <div id="msg" style="display:none;margin-top:14px;padding:12px;background:#f8fafc;border-radius:8px;color:var(--muted)"></div>
+    </div>
+  </div>
+
+  <script>
+    function handleSubmit(e){
+      e.preventDefault();
+      const opinion = document.getElementById('opinion').value;
+      const comments = document.getElementById('comments').value.trim();
+      if(!opinion || !comments){
+        alert('Please select your opinion and write a short comment.');
+        return;
+      }
+      const payload = { opinion, comments, state: document.getElementById('state').value.trim(), email: document.getElementById('email').value.trim() };
+      console.log('Feedback payload:', payload);
+
+      // simple UI ack (replace with real submit in production)
+      document.getElementById('feedbackForm').reset();
+      const msg = document.getElementById('msg');
+      msg.textContent = 'Thank you — feedback recorded.';
+      msg.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
